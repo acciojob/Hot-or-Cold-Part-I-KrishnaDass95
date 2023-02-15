@@ -1,17 +1,23 @@
-//your code here
-var btn = document.getElementById("btn");
-var displayRandomNumber = document.getElementById("num");
-var guessedNumber = document.getElementById("guess").value;
-var respond = document.getElementById("respond");
+var button = document.getElementById("btn");
+var randomNum = document.getElementById("num");
+var input = document.getElementById("guess").value;
+var res = document.getElementById("respond");
 
-
-
-
-function generateRandomNumber(){
-	// Math.random gives a decimal value, we use the floor value to remove the 
-	var num = Math.floor(Math.random() * 41) - 20;
-	displayRandomNumber.textContent = num;
+function check(rand, input){
+	var diff = Number(rand) - Number(input);
+	if(Math.abs(diff) <= 5){
+		res.textContent = "Hot";
+	}
+	else{
+		res.textContent = "Cold";
+	}
 	
 }
-btn.addEventListener("click", generateRandomNumber);
 
+function generateRandomNumber(){
+	var rand = Math.floor(Math.random() * 41) - 20;
+	randomNum.textContent = rand;
+	check(rand, input);
+}
+
+btn.addEventListener('click', generateRandomNumber);
